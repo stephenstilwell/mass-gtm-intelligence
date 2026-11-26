@@ -1,0 +1,547 @@
+{
+  "meta": {
+    "asOf": "2026-11-25",
+    "startDate": "2024-01-01",
+    "credits": 0,
+    "deeplineSearches": 10,
+    "api": "https://api.usaspending.gov/api/v2/search/spending_by_award/",
+    "apiDocs": "https://api.usaspending.gov/docs/intro-tutorial",
+    "mass": "https://www.massgroup.com/who-we-serve/aerospace-defense",
+    "deepline": "https://deepline.com/skills/deepline-gtm"
+  },
+  "rubric": [
+    {
+      "key": "fit",
+      "label": "Operations fit",
+      "max": 30,
+      "explanation": "Analyst-scored from 22 to 30 for evidence that a traceability, inspection, or work-instruction workflow fits the public MASS Group product scope. A specific production or shop handoff earns the highest values."
+    },
+    {
+      "key": "timing",
+      "label": "Signal specificity",
+      "max": 30,
+      "explanation": "Analyst-scored from 20 to 30. Segment growth disclosures score 20, dated expansion research or integration milestones score 24–28, and a named site opening or production transfer scores 30."
+    },
+    {
+      "key": "award",
+      "label": "DoD award recency",
+      "max": 25,
+      "explanation": "25 points for an award start in the previous 365 days, 21 for 366–730 days, and 17 for older records visible in the query window."
+    },
+    {
+      "key": "access",
+      "label": "Stakeholder evidence",
+      "max": 15,
+      "explanation": "15 points for two or more company-confirmed named roles, 12 for one confirmed and one sourced candidate, and 10 for one confirmed role."
+    }
+  ],
+  "accounts": [
+    {
+      "id": "standardaero",
+      "name": "StandardAero",
+      "domain": "standardaero.com",
+      "segment": "Aviation MRO",
+      "location": "San Antonio, TX · Winnipeg, MB",
+      "awardId": "FA812426FB042",
+      "operationalFit": 30,
+      "signalSpecificity": 27,
+      "workflow": "Repair traveler and inspection traceability",
+      "fit": "StandardAero operates engine MRO shops for commercial and government customers. A shop-level repair traveler is a practical TME® use case because receiving, routing, inspections, and release records must stay tied to one serialized job.",
+      "signal": {
+        "date": "2026-09-03",
+        "title": "Winnipeg MRO expansion opened",
+        "fact": "StandardAero reported that its Winnipeg expansion increased the facility footprint by 40% and expanded engine MRO capacity.",
+        "publisher": "StandardAero announcement",
+        "url": "https://ir.standardaero.com/news-events/press-releases/detail/166/standardaero-celebrates-official-opening-of-its-expanded-facility-in-winnipeg"
+      },
+      "awardContext": "The U.S. award names Standard Aero (San Antonio) Inc. for public depot maintenance work. The Winnipeg news is a separate corporate MRO capacity signal.",
+      "hypothesis": "A growing shop network may benefit from a common traveler and inspection format that preserves local work instructions.",
+      "validation": "Ask which U.S. or Canadian shop owns traveler templates, where inspection evidence is stored, and whether a shop is standardizing its workflow. Confirm the incumbent MRO and ERP systems.",
+      "stakeholders": [
+        {
+          "role": "Business sponsor",
+          "name": "Marc Drobny",
+          "title": "President, Engine Services – Military, Helicopters & Energy",
+          "url": "https://ir.standardaero.com/company-info/executive-team",
+          "status": "Company-confirmed"
+        },
+        {
+          "role": "Workflow lead",
+          "name": "Richard Rockers",
+          "title": "Vice President, Operations Excellence",
+          "url": "https://www.linkedin.com/in/richardrockers/",
+          "status": "Deepline candidate · verify role"
+        },
+        {
+          "role": "Quality approver",
+          "name": null,
+          "title": "Shop quality and release authority",
+          "url": null,
+          "status": "Role to identify"
+        }
+      ],
+      "next": "Ask the Engine Services team for the owner of one commercial or sustainment shop traveler. Propose a small review of inspection evidence retrieval with representative, non-sensitive records.",
+      "outreach": {
+        "subject": "A repair-traveler question after the Winnipeg expansion",
+        "body": "Hi Marc,\n\nI saw StandardAero opened the Winnipeg MRO expansion and added floor space to increase capacity. When another shop adds throughput, who owns keeping the serialized traveler and final inspection evidence consistent from receiving to release?\n\nMASS Group’s TME supports digital travelers and part-level traceability. If there’s a shop standardizing that handoff, would you point me to the operations or quality lead for a 15-minute comparison on one repair workflow?\n\nMASS Group"
+      }
+    },
+    {
+      "id": "aar",
+      "name": "AAR Corp.",
+      "domain": "aarcorp.com",
+      "segment": "Aviation MRO",
+      "location": "Miami, FL · Oklahoma City, OK",
+      "awardId": "FA820326F0004",
+      "operationalFit": 30,
+      "signalSpecificity": 30,
+      "workflow": "Hangar work packs and material handoffs",
+      "fit": "AAR operates airframe maintenance and component repair businesses at multiple locations. TME® can be evaluated for work-pack tasks that tie parts, inspection sign-offs, and exception records to a maintenance event.",
+      "signal": {
+        "date": "2026-08-17",
+        "title": "New Miami airframe MRO hangar",
+        "fact": "AAR and Miami-Dade officials marked the completion of the expanded Miami International Airport airframe MRO facility with a ribbon cutting.",
+        "publisher": "AAR announcement",
+        "url": "https://prod.website.aarcorp.com/en/newsroom/aar-news/aar-celebrates-ribbon-cutting-for-airframe-mro-facility-expansion-in-miami/"
+      },
+      "awardContext": "The Air Force record belongs to AAR Government Services, Inc. and establishes a separate group-level defense sustainment relationship.",
+      "hypothesis": "Starting work on additional maintenance lines creates a natural time to compare how material handoffs and sign-offs are recorded across bays.",
+      "validation": "Check which functions are already handled by AAR’s existing MRO tools, including its Trax business. Qualify a narrow gap with facility quality rather than framing an enterprise replacement.",
+      "stakeholders": [
+        {
+          "role": "Business sponsor",
+          "name": "Tom Hoferer",
+          "title": "Senior Vice President, Repair & Engineering",
+          "url": "https://prod.website.aarcorp.com/en/about/corporate-officers/tom-hoferer/",
+          "status": "Company-confirmed"
+        },
+        {
+          "role": "Quality approver",
+          "name": "Art R. Smith",
+          "title": "Vice President and Chief Quality Officer",
+          "url": "https://www.aarcorp.com/en/about/corporate-officers/art-r.-smith",
+          "status": "Company-confirmed"
+        },
+        {
+          "role": "Workflow lead",
+          "name": "Nicholas Dopfel",
+          "title": "Vice President, Aircraft Operations MRO Engineering",
+          "url": "https://www.linkedin.com/in/nicholas-dopfel-7414b460/",
+          "status": "Deepline candidate · verify role"
+        }
+      ],
+      "next": "Ask Repair & Engineering to name the Miami operations lead for a single work-pack handoff. Compare current elapsed time and completeness against a small pilot.",
+      "outreach": {
+        "subject": "A work-pack handoff question for AAR’s new Miami bays",
+        "body": "Hi Tom,\n\nI saw AAR cut the ribbon on its Miami airframe MRO expansion. As the new bays take on work, is there one material handoff or inspection sign-off that still takes extra effort to reconcile across the work pack?\n\nMASS Group’s TME can tie serialized parts and quality checks to a digital work history. Would a short discussion with the site lead make sense to see whether one handoff could benefit alongside your existing MRO tools?\n\nMASS Group"
+      }
+    },
+    {
+      "id": "woodward",
+      "name": "Woodward",
+      "domain": "woodward.com",
+      "segment": "Precision components",
+      "location": "Spartanburg, SC",
+      "awardId": "SPE4A726PD514",
+      "operationalFit": 30,
+      "signalSpecificity": 30,
+      "workflow": "Workcell transfer and record continuity",
+      "fit": "A new aerospace manufacturing campus and a documented production move make Woodward a strong candidate for a bounded pilot on work orders, inspection evidence, and material continuity.",
+      "signal": {
+        "date": "2026-09-21",
+        "title": "Aerospace production transfer announced",
+        "fact": "Woodward announced plans to move aerospace controls production from Santa Clarita to its new Spartanburg manufacturing campus, which also supports commercial aerospace growth.",
+        "publisher": "Woodward investor relations",
+        "url": "https://ir.woodward.com/news/news-details/2026/Woodward-Plans-to-Transition-Its-Santa-Clarita-California-Aerospace-Controls-Production-to-Spartanburg-South-Carolina/default.aspx"
+      },
+      "awardContext": "The separate DLA supply award names Woodward FST, Inc. The award and campus announcement refer to different operating scopes.",
+      "hypothesis": "Transferring work to a new campus may make it useful to verify that inspection and material records travel cleanly with the work order.",
+      "validation": "Confirm which commercial workcell is in scope, what the transfer calendar permits, and where the receiving site already has ERP or MES coverage.",
+      "stakeholders": [
+        {
+          "role": "Business sponsor",
+          "name": "Shawn McLevige",
+          "title": "EVP and President, Aerospace",
+          "url": "https://www.woodward.com/leadership/shawn-mclevige/",
+          "status": "Company-confirmed"
+        },
+        {
+          "role": "Systems approver",
+          "name": "Paxton McVoy",
+          "title": "Executive Vice President and Chief Information Officer",
+          "url": "https://www.woodward.com/leadership/",
+          "status": "Company-confirmed"
+        },
+        {
+          "role": "Site champion",
+          "name": null,
+          "title": "Spartanburg manufacturing systems or quality lead",
+          "url": null,
+          "status": "Role to identify"
+        }
+      ],
+      "next": "Ask the aerospace segment to nominate a commercial workcell owner. Offer a transition-readiness review of traveler revisions and whether inspection evidence transfers with the order.",
+      "outreach": {
+        "subject": "Traceability through the Spartanburg workcell transfer",
+        "body": "Hi Shawn,\n\nI read Woodward’s September announcement about moving aerospace controls production to Spartanburg. When a commercial workcell transfers, who checks that the traveler revision and inspection history are available when the receiving team starts work?\n\nMASS Group’s TME links work instructions, material records, and inspection evidence. Would it help to compare one commercial workcell’s transfer checklist with your operations and IT leads before the next cutover?\n\nMASS Group"
+      }
+    },
+    {
+      "id": "oshkosh",
+      "name": "Oshkosh Corporation",
+      "domain": "oshkoshcorp.com",
+      "segment": "Vehicle manufacturing",
+      "location": "Spartanburg, SC · Oshkosh, WI",
+      "awardId": "W912CH25F0168",
+      "operationalFit": 28,
+      "signalSpecificity": 28,
+      "workflow": "Mixed-variant assembly and inspection records",
+      "fit": "Oshkosh runs purpose-built vehicle manufacturing at scale. Its delivery vehicle line is a useful environment to explore serial-level build records, inspection evidence, and rework traceability.",
+      "signal": {
+        "date": "2026-07-28",
+        "title": "Spartanburg delivery vehicle ramp",
+        "fact": "Oshkosh’s second-quarter earnings presentation showed its South Carolina factory ramping production of postal delivery vehicles.",
+        "publisher": "Oshkosh Q2 2026 presentation",
+        "url": "https://www.investors.oshkoshcorp.com/media/document/9216029b-a73c-4df0-bc83-28c46d0f4550/assets/Q2_2026_Earnings_Slides_FINAL.pdf?disposition=inline"
+      },
+      "awardContext": "The Army award identifies Oshkosh Defense LLC as the recipient of an order for transport vehicles. The postal line is a separate manufacturing signal within the group.",
+      "hypothesis": "A ramped delivery vehicle line may need a reliable way to retrieve each vehicle’s component and rework records across shifts.",
+      "validation": "Determine the responsible manufacturing systems team, the production system already in place, and whether an inspection or rework handoff remains manual.",
+      "stakeholders": [
+        {
+          "role": "Business sponsor",
+          "name": "Steve Nordlund",
+          "title": "EVP, Oshkosh Corporation and President, Transport",
+          "url": "https://oshkoshdefense.com/leadership/steve-nordlund/",
+          "status": "Company-confirmed"
+        },
+        {
+          "role": "Operations lead",
+          "name": "Matt Schreiner",
+          "title": "VP, Global Engineering, Operations and Supply Chain, Transport",
+          "url": "https://oshkoshdefense.com/leadership/matthew-schreiner/",
+          "status": "Company-confirmed"
+        },
+        {
+          "role": "Systems reviewer",
+          "name": "Donald McCartney",
+          "title": "Global Vice President, Digital Operations",
+          "url": "https://www.linkedin.com/in/donald-mccartney/",
+          "status": "Deepline candidate · verify role"
+        },
+        {
+          "role": "Site approver",
+          "name": null,
+          "title": "Spartanburg line quality or manufacturing systems lead",
+          "url": null,
+          "status": "Role to identify"
+        }
+      ],
+      "next": "Ask Transport Operations whether a postal vehicle station can be reviewed using sample serial and rework records. Measure record completeness and retrieval time.",
+      "outreach": {
+        "subject": "Vehicle build records on the Spartanburg ramp",
+        "body": "Hi Matt,\n\nOshkosh’s July update showed the Spartanburg postal vehicle line ramping production. As volume rises, is the team able to pull the component history and rework evidence for a vehicle from one record?\n\nMASS Group’s TME supports serial-level traceability and digital quality records. Would you be open to a quick review of one inspection station with the Spartanburg manufacturing systems lead?\n\nMASS Group"
+      }
+    },
+    {
+      "id": "howmet",
+      "name": "Howmet Aerospace",
+      "domain": "howmet.com",
+      "segment": "Precision components",
+      "location": "Pittsburgh, PA · Fastening Systems sites",
+      "awardId": "SPE7L126V082J",
+      "operationalFit": 30,
+      "signalSpecificity": 26,
+      "workflow": "Lot genealogy across acquired fastener operations",
+      "fit": "Howmet’s aerospace fastening portfolio and recent acquisition create a plausible use for reconciling lot identifiers, inspection events, and release records across a newly combined business.",
+      "signal": {
+        "date": "2026-04-06",
+        "title": "CAM acquisition completed",
+        "fact": "Howmet’s SEC filing records the April closing of Consolidated Aerospace Manufacturing, expanding its portfolio of aerospace fasteners and related components.",
+        "publisher": "Howmet Q3 2026 SEC filing",
+        "url": "https://www.sec.gov/Archives/edgar/data/4281/000000428126000036/hwm-20260930.htm"
+      },
+      "awardContext": "A DLA supply award names Howmet Global Fastening Systems Inc. as the recipient. It anchors the defense customer relationship for the relevant business.",
+      "hypothesis": "Post-close integration may expose differences in how facilities capture lot and release evidence, creating room for a common evidence model.",
+      "validation": "Identify which sites are in the integration scope and whether an existing MES or QMS standard already covers the trial workflow.",
+      "stakeholders": [
+        {
+          "role": "Business sponsor",
+          "name": "Vagner Finelli",
+          "title": "President, Fastening Systems",
+          "url": "https://www.howmet.com/executive-leadership/",
+          "status": "Company-confirmed"
+        },
+        {
+          "role": "Systems reviewer",
+          "name": "Sandeep Kuthe",
+          "title": "Business-unit CIO, Howmet Fastening Systems",
+          "url": "https://www.linkedin.com/in/sandeep-kuthe/",
+          "status": "Deepline candidate · verify role"
+        },
+        {
+          "role": "Quality champion",
+          "name": null,
+          "title": "CAM integration quality or plant operations owner",
+          "url": null,
+          "status": "Role to identify"
+        }
+      ],
+      "next": "Ask Fastening Systems to nominate one acquired site and one representative lot. Review whether receiving and inspection records can be reconstructed across systems.",
+      "outreach": {
+        "subject": "Lot genealogy during the CAM integration",
+        "body": "Hi Vagner,\n\nHowmet’s filing noted the April closing of CAM. When two fastening operations bring their processes together, how does the team compare lot and release records for the first product family in scope?\n\nMASS Group’s TME supports lot genealogy and linked inspection evidence. If traceability is on the integration checklist, would you point me to the plant quality or systems owner for a short walk-through of one lot record?\n\nMASS Group"
+      }
+    },
+    {
+      "id": "carpenter",
+      "name": "Carpenter Technology",
+      "domain": "carpentertechnology.com",
+      "segment": "Specialty materials",
+      "location": "Reading, PA · U.S. specialty alloy sites",
+      "awardId": "N0016724P0275",
+      "operationalFit": 30,
+      "signalSpecificity": 24,
+      "workflow": "Heat, lot, and release-record continuity",
+      "fit": "Specialty alloy production requires controlled lot records and repeatable test and release steps. The TME® fit is a narrowly scoped workflow for making those records easier to retrieve.",
+      "signal": {
+        "date": "2026-09-10",
+        "title": "Brownfield capacity projects on schedule",
+        "fact": "Carpenter’s FY2026 proxy reported that its brownfield capacity expansion projects remained on budget and on schedule, alongside productivity and product-mix initiatives.",
+        "publisher": "Carpenter SEC proxy filing",
+        "url": "https://www.sec.gov/Archives/edgar/data/17843/000119312526389294/crs-20260910.htm"
+      },
+      "awardContext": "The Navy award names Carpenter Technology Corporation directly and concerns a materials-production order. The award record is an older sector tie.",
+      "hypothesis": "New capacity inside an existing plant may create a checkpoint for how lot records, lab results, and release evidence are handed off.",
+      "validation": "Confirm the active project and its accountable plant manager. Check which quality and ERP tools already retain test results and how evidence is retrieved.",
+      "stakeholders": [
+        {
+          "role": "Business sponsor",
+          "name": "Marshall Akins",
+          "title": "Senior Vice President and Chief Operating Officer",
+          "url": "https://www.sec.gov/Archives/edgar/data/17843/000001784326000052/crs-cooccotransitionxfinal.htm",
+          "status": "Company-confirmed"
+        },
+        {
+          "role": "Planning influencer",
+          "name": "William Herbert",
+          "title": "VP, Planning, Specialty Alloy Operations",
+          "url": "https://www.linkedin.com/in/william-herbert-0b295631/",
+          "status": "Deepline candidate · verify role"
+        },
+        {
+          "role": "Quality approver",
+          "name": null,
+          "title": "Specialty Alloys plant quality or laboratory systems lead",
+          "url": null,
+          "status": "Role to identify"
+        }
+      ],
+      "next": "Ask Specialty Alloys Operations for one expanded production route. Walk one sample lot from material receipt through test disposition and release.",
+      "outreach": {
+        "subject": "A lot-record check for Carpenter’s brownfield expansion",
+        "body": "Hi Marshall,\n\nCarpenter’s FY2026 proxy said the brownfield capacity projects were progressing on schedule. Is one project approaching the point where operations needs to verify how heat and lot records connect to test results and release?\n\nMASS Group’s TME supports that traceability across work steps. Would it be useful to compare how one lot is reconstructed today with the plant quality or production-planning lead?\n\nMASS Group"
+      }
+    },
+    {
+      "id": "moog",
+      "name": "Moog",
+      "domain": "moog.com",
+      "segment": "Precision components",
+      "location": "East Aurora, NY",
+      "awardId": "SPRTA126F0215",
+      "operationalFit": 28,
+      "signalSpecificity": 27,
+      "workflow": "Serialized assembly and test evidence",
+      "fit": "Moog’s commercial aircraft business involves precision assemblies and tested hardware. A TME® pilot can focus on keeping build history and test results associated with serialized commercial assemblies.",
+      "signal": {
+        "date": "2026-08-14",
+        "title": "Advanced Integrated Manufacturing facility opened",
+        "fact": "Moog announced a new Advanced Integrated Manufacturing facility in East Aurora and described ongoing investment in facilities and technical workforce training.",
+        "publisher": "Moog announcement",
+        "url": "https://www.moog.com/news/operating-group-news/2026/moog-celebrates-75-years.html"
+      },
+      "awardContext": "The DLA award names Moog Military Aircraft LLC as the recipient of a mechanical component order. The proposed trial is a separate commercial workflow.",
+      "hypothesis": "A manufacturing footprint expansion offers a point to compare how assembly work instructions and test records are linked across handoffs.",
+      "validation": "Ask which commercial operations team could sponsor a trial, where test records are stored, and whether a current system provides unit-level genealogy.",
+      "stakeholders": [
+        {
+          "role": "Business sponsor",
+          "name": "Michael Schaff",
+          "title": "Vice President and President, Commercial Aircraft",
+          "url": "https://www.moog.com/investors/corporate-governance.html",
+          "status": "Company-confirmed"
+        },
+        {
+          "role": "Systems reviewer",
+          "name": "Jeff Wilkinson",
+          "title": "Chief Information Officer",
+          "url": "https://www.linkedin.com/in/wilkinson/",
+          "status": "Deepline candidate · verify role"
+        },
+        {
+          "role": "Quality champion",
+          "name": null,
+          "title": "Commercial Aircraft manufacturing quality or test systems leader",
+          "url": null,
+          "status": "Role to identify"
+        }
+      ],
+      "next": "Invite the Commercial Aircraft team to trace one non-sensitive serialized assembly from operation completion to test and release. Record where the evidence resides.",
+      "outreach": {
+        "subject": "Linking assembly and test evidence in Moog’s commercial shops",
+        "body": "Hi Michael,\n\nMoog’s East Aurora opening highlighted how much the company is investing in manufacturing capacity. I’m curious how your commercial aircraft teams link a unit’s assembly history to final test evidence when the work spans different stations.\n\nMASS Group’s TME supports serialized work histories and digital quality records. Would you be open to a brief comparison on one commercial assembly with your manufacturing quality lead?\n\nMASS Group"
+      }
+    },
+    {
+      "id": "ducommun",
+      "name": "Ducommun",
+      "domain": "ducommun.com",
+      "segment": "Precision components",
+      "location": "Costa Mesa, CA · U.S. operating sites",
+      "awardId": "FA853825F0058",
+      "operationalFit": 28,
+      "signalSpecificity": 20,
+      "workflow": "Inspection and rework visibility across shifts",
+      "fit": "Ducommun combines electronics and structural manufacturing. A TME® trial could help an operating site validate whether separate inspection and rework records can be retrieved consistently for a commercial build.",
+      "signal": {
+        "date": "2026-11-05",
+        "title": "Commercial aerospace revenue rose 28%",
+        "fact": "Ducommun’s Q3 2026 earnings presentation reported 28% year-over-year commercial aerospace growth and described efforts to prepare for production ramp-up.",
+        "publisher": "Ducommun Q3 investor presentation",
+        "url": "https://investors.ducommun.com/static-files/1b5ac60f-54bc-46ac-ace8-da2ef7efb57c"
+      },
+      "awardContext": "The Air Force MRO delivery order names Ducommun LaBarge Technologies, Inc. It establishes the government business tie through the electronics subsidiary.",
+      "hypothesis": "Higher commercial volume may increase the cost of reconciling inspection exceptions if a product line uses records spread across systems or shifts.",
+      "validation": "Identify a commercial line under capacity pressure, check quality ownership, and ask whether rework evidence is already captured in a linked system.",
+      "stakeholders": [
+        {
+          "role": "Business sponsor",
+          "name": "Jerry Redondo",
+          "title": "Senior Vice President, Electronics & Structural Systems",
+          "url": "https://investors.ducommun.com/corporate-governance/management",
+          "status": "Company-confirmed"
+        },
+        {
+          "role": "Systems reviewer",
+          "name": "Eric White",
+          "title": "Director of IT Operations",
+          "url": "https://www.linkedin.com/in/eric-white-88abbbb6/",
+          "status": "Deepline candidate · verify role"
+        },
+        {
+          "role": "Quality champion",
+          "name": null,
+          "title": "Commercial site quality or manufacturing operations leader",
+          "url": null,
+          "status": "Role to identify"
+        }
+      ],
+      "next": "Ask Electronics & Structural Systems to nominate a commercial line. Review one first-pass inspection exception and how it is closed across shifts.",
+      "outreach": {
+        "subject": "Inspection exceptions during Ducommun’s commercial ramp",
+        "body": "Hi Jerry,\n\nYour latest investor materials showed commercial aerospace revenue up 28% year over year. As those lines scale, is there a site where the quality team spends extra time linking a rework disposition back to the original work order?\n\nMASS Group’s TME supports a shared record for build, inspection, and rework. If a site is already reviewing that handoff, could we compare one example with its operations and quality leads?\n\nMASS Group"
+      }
+    },
+    {
+      "id": "astronics",
+      "name": "Astronics",
+      "domain": "astronics.com",
+      "segment": "Aerospace electronics",
+      "location": "East Aurora, NY · U.S. operating sites",
+      "awardId": "M6785426F5105",
+      "operationalFit": 28,
+      "signalSpecificity": 20,
+      "workflow": "Electronics build and release-test traceability",
+      "fit": "Astronics manufactures commercial aerospace electronics and test equipment through distinct businesses. TME® is a candidate for one commercial electronics line where serialized build and release-test evidence need a shared record.",
+      "signal": {
+        "date": "2026-11-10",
+        "title": "Commercial transport sales rose 28.8%",
+        "fact": "In its third-quarter release, Astronics reported year-over-year commercial transport sales growth of 28.8% and record quarterly Aerospace sales.",
+        "publisher": "Astronics Q3 2026 release",
+        "url": "https://investors.astronics.com/news-events/press-releases/detail/467/astronics-corporation-reports-record-operating-income-on"
+      },
+      "awardContext": "The Navy award names Astronics Test Systems Inc. as recipient for test equipment. The proposed pilot concerns a commercial Aerospace line, a separate operating scope.",
+      "hypothesis": "Rising commercial volume increases the value of being able to retrieve a unit’s assembly and test records without manual cross-references.",
+      "validation": "Find a site with an actual quality-record retrieval problem. Verify local ownership and whether the current test tool exports a stable serial identifier.",
+      "stakeholders": [
+        {
+          "role": "Business sponsor",
+          "name": "Mark Peabody",
+          "title": "President, Astronics Aerospace",
+          "url": "https://investors.astronics.com/company-information/management-team",
+          "status": "Company-confirmed"
+        },
+        {
+          "role": "Segment counterpart",
+          "name": "Jim Mulato",
+          "title": "President, Astronics Test Systems",
+          "url": "https://investors.astronics.com/company-information/management-team",
+          "status": "Company-confirmed"
+        },
+        {
+          "role": "Workflow champion",
+          "name": null,
+          "title": "Commercial electronics quality or test engineering lead",
+          "url": null,
+          "status": "Role to identify"
+        }
+      ],
+      "next": "Ask Aerospace Operations to identify one commercial electronics assembly line and arrange a short review of the handoff between testing and quality release.",
+      "outreach": {
+        "subject": "Serial-to-test history as Astronics commercial volumes grow",
+        "body": "Hi Mark,\n\nAstronics reported commercial transport sales up 28.8% in Q3. With that volume, is there an electronics line where quality has to reconcile the build record and final test result by hand?\n\nMASS Group’s TME links inspection and test evidence to a serialized work history. Would a quick review with a commercial site’s quality or test engineering lead be useful if that handoff is on your list?\n\nMASS Group"
+      }
+    },
+    {
+      "id": "hexcel",
+      "name": "Hexcel",
+      "domain": "hexcel.com",
+      "segment": "Specialty materials",
+      "location": "Wichita, KS · Americas operations",
+      "awardId": "SPE8E525P0307",
+      "operationalFit": 27,
+      "signalSpecificity": 24,
+      "workflow": "Composite material lots and qualification evidence",
+      "fit": "Hexcel supplies advanced composite materials for aerospace. Its manufacturing collaboration is a natural setting to evaluate how input lot, process history, and test evidence can be traced across a pilot workflow.",
+      "signal": {
+        "date": "2026-05-28",
+        "title": "Wichita applications center broke ground",
+        "fact": "Hexcel and Wichita State’s NIAR broke ground on an applications center focused on composites, automated processing, and manufacturing development.",
+        "publisher": "Hexcel announcement",
+        "url": "https://investors.hexcel.com/investor-relations/news/news-details/2026/Hexcel-NIAR-Break-Ground-on-New-Hexcel-Applications-Center-at-Wichita-State-University/default.aspx"
+      },
+      "awardContext": "The DLA award names Hexcel Corp for reinforcing material. It is an older account-level defense tie, separate from the applications center.",
+      "hypothesis": "A development center may be a useful place to test evidence continuity through preparation, processing, and qualification activities before a production rollout.",
+      "validation": "Confirm who owns the development records and whether a prototype workflow can be shared. Establish which partner has authority over systems selection.",
+      "stakeholders": [
+        {
+          "role": "Business sponsor",
+          "name": "Lyndon Smith",
+          "title": "President, Americas & Global Fibers",
+          "url": "https://investors.hexcel.com/investor-relations/governance/board-of-directors/person-details/default.aspx?ItemId=9ebcb031-e7dc-4e39-b544-3c693a1fbac2",
+          "status": "Company-confirmed"
+        },
+        {
+          "role": "Operations lead",
+          "name": "Shane Wright",
+          "title": "Vice President of Operations, Global Fibers and Americas Composite Materials",
+          "url": "https://www.linkedin.com/in/shane-wright-10b76384/",
+          "status": "Deepline candidate · verify role"
+        },
+        {
+          "role": "Workflow champion",
+          "name": null,
+          "title": "Applications center manufacturing or qualification lead",
+          "url": null,
+          "status": "Role to identify"
+        }
+      ],
+      "next": "Ask the Americas team whether an applications-center lead can review a representative non-sensitive coupon or test-lot record with MASS Group.",
+      "outreach": {
+        "subject": "A lot-to-test traceability question for the Wichita center",
+        "body": "Hi Lyndon,\n\nI saw Hexcel and NIAR broke ground on the Wichita applications center, with automated composites processing among its focus areas. When a pilot run goes from material prep through test, where do teams connect the input lot to its qualification evidence?\n\nMASS Group’s TME supports lot-level traceability and digital quality records. Would you point me to the applications or operations lead if a short walk-through of one pilot record would be helpful?\n\nMASS Group"
+      }
+    }
+  ]
+}

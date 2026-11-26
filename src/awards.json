@@ -1,0 +1,82 @@
+{
+  "standardaero": {
+    "id": "FA812426FB042",
+    "date": "2026-05-05",
+    "recipient": "STANDARD AERO (SAN ANTONIO) INC.",
+    "amount": 28988015.22,
+    "agency": "Department of the Air Force",
+    "url": "https://www.usaspending.gov/award/CONT_AWD_FA812426FB042_9700_FA812420D0005_9700"
+  },
+  "aar": {
+    "id": "FA820326F0004",
+    "date": "2026-04-01",
+    "recipient": "AAR GOVERNMENT SERVICES, INC.",
+    "amount": 38546875.8,
+    "agency": "Department of the Air Force",
+    "url": "https://www.usaspending.gov/award/CONT_AWD_FA820326F0004_9700_FA820317D1226_9700"
+  },
+  "woodward": {
+    "id": "SPE4A726PD514",
+    "date": "2026-07-10",
+    "recipient": "WOODWARD FST, INC",
+    "amount": 987319.8,
+    "agency": "Defense Logistics Agency",
+    "url": "https://www.usaspending.gov/award/CONT_AWD_SPE4A726PD514_9700_-NONE-_-NONE-"
+  },
+  "oshkosh": {
+    "id": "W912CH25F0168",
+    "date": "2025-02-04",
+    "recipient": "OSHKOSH DEFENSE LLC",
+    "amount": 235287687.98,
+    "agency": "Department of the Army",
+    "url": "https://www.usaspending.gov/award/CONT_AWD_W912CH25F0168_9700_W56HZV18D0010_9700"
+  },
+  "howmet": {
+    "id": "SPE7L126V082J",
+    "date": "2026-07-01",
+    "recipient": "HOWMET GLOBAL FASTENING SYSTEMS INC",
+    "amount": 208600,
+    "agency": "Defense Logistics Agency",
+    "url": "https://www.usaspending.gov/award/CONT_AWD_SPE7L126V082J_9700_-NONE-_-NONE-"
+  },
+  "carpenter": {
+    "id": "N0016724P0275",
+    "date": "2024-09-25",
+    "recipient": "CARPENTER TECHNOLOGY CORPORATION",
+    "amount": 235409.5,
+    "agency": "Department of the Navy",
+    "url": "https://www.usaspending.gov/award/CONT_AWD_N0016724P0275_9700_-NONE-_-NONE-"
+  },
+  "moog": {
+    "id": "SPRTA126F0215",
+    "date": "2026-06-22",
+    "recipient": "MOOG MILITARY AIRCRAFT LLC",
+    "amount": 17284178,
+    "agency": "Defense Logistics Agency",
+    "url": "https://www.usaspending.gov/award/CONT_AWD_SPRTA126F0215_9700_SPE4A122G0008_9700"
+  },
+  "ducommun": {
+    "id": "FA853825F0058",
+    "date": "2025-06-17",
+    "recipient": "DUCOMMUN LABARGE TECHNOLOGIES, INC",
+    "amount": 557342,
+    "agency": "Department of the Air Force",
+    "url": "https://www.usaspending.gov/award/CONT_AWD_FA853825F0058_9700_FA853822D0004_9700"
+  },
+  "astronics": {
+    "id": "M6785426F5105",
+    "date": "2026-02-20",
+    "recipient": "ASTRONICS TEST SYSTEMS INC",
+    "amount": 9499594.73,
+    "agency": "Department of the Navy",
+    "url": "https://www.usaspending.gov/award/CONT_AWD_M6785426F5105_9700_M6785423D5101_9700"
+  },
+  "hexcel": {
+    "id": "SPE8E525P0307",
+    "date": "2024-12-06",
+    "recipient": "HEXCEL CORP",
+    "amount": 240300,
+    "agency": "Defense Logistics Agency",
+    "url": "https://www.usaspending.gov/award/CONT_AWD_SPE8E525P0307_9700_-NONE-_-NONE-"
+  }
+}

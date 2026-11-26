@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Public-source account intelligence for manufacturing operations, quality, and traceability.">
+<title>MASS Group | GTM Intelligence</title>
+<style>
+  :root {
+    color-scheme: light;
+    --navy: #10283a;
+    --ink: #182b35;
+    --muted: #526674;
+    --light: #eef3f5;
+    --surface: #fff;
+    --line: #d6e1e5;
+    --teal: #00685e;
+    --teal-soft: #e1f1eb;
+    --blue-soft: #e7eff6;
+    --amber: #775014;
+    --amber-soft: #f7eedb;
+    --shadow: 0 12px 36px #132b3910;
+  }
+  *, *::before, *::after { box-sizing: border-box; }
+  body { margin: 0; background: var(--light); color: var(--ink); font: 15px/1.55 "Segoe UI", system-ui, sans-serif; }
+  a { color: var(--teal); text-underline-offset: 3px; }
+  button, input, select, textarea { font: inherit; }
+  button, select { cursor: pointer; }
+  :focus-visible { outline: 3px solid #17898b; outline-offset: 3px; }
+  h1, h2, h3, p { margin: 0; }
+  .shell { width: min(1440px, 100% - 80px); margin-inline: auto; }
+  .skip { position: absolute; left: 12px; top: -90px; padding: 8px 12px; background: #fff; z-index: 3; }
+  .skip:focus { top: 12px; }
+  .top { background: #0e2231; color: #fff; }
+  .topline { min-height: 68px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .identity { display: flex; align-items: center; gap: 12px; }
+  .mark { display: grid; place-items: center; width: 34px; height: 34px; background: #bce9d5; color: #10283a; border-radius: 8px; font-weight: 900; font-size: 20px; }
+  .brand { font-weight: 750; letter-spacing: -.02em; }
+  .topdate { color: #c6d7dd; font-size: .83rem; }
+  .hero { padding: 35px 0 34px; color: #fff; background: linear-gradient(115deg, #17354a, #164342); }
+  .hero-inner { display: grid; grid-template-columns: 1.05fr 1fr; gap: 26px; align-items: end; }
+  .eyebrow { color: #b9e7d6; font-size: .76rem; font-weight: 750; letter-spacing: .11em; text-transform: uppercase; }
+  h1 { margin: 6px 0 9px; font-size: clamp(2rem, 3.8vw, 3.65rem); line-height: 1.04; letter-spacing: -.058em; }
+  .hero-copy { max-width: 52ch; color: #dce9ed; }
+  .metrics { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border: 1px solid #ffffff34; border-radius: 14px; background: #ffffff0a; }
+  .metric { min-width: 0; padding: 15px 12px; }
+  .metric + .metric { border-left: 1px solid #ffffff29; }
+  .metric strong { display: block; font-size: 1.65rem; font-weight: 740; line-height: 1.2; letter-spacing: -.04em; }
+  .metric span { display: block; margin-top: 5px; color: #d7e7e9; font-size: .76rem; }
+  .nav { background: var(--surface); border-bottom: 1px solid var(--line); }
+  .nav-inner { display: flex; gap: 22px; align-items: center; }
+  .nav button { color: var(--muted); padding: 14px 3px 12px; background: none; border: 0; border-bottom: 3px solid transparent; font-weight: 700; }
+  .nav button[aria-current="page"] { color: var(--teal); border-bottom-color: var(--teal); }
+  main { padding: 24px 0 41px; min-height: 560px; }
+  .tools { display: flex; flex-wrap: wrap; align-items: end; gap: 12px; margin-bottom: 17px; }
+  .field { display: grid; gap: 4px; color: var(--muted); font-size: .79rem; font-weight: 700; }
+  .search { flex: 1; min-width: 215px; }
+  .field input, .field select { min-height: 42px; padding: 8px 11px; color: var(--ink); background: #fff; border: 1px solid #becfd6; border-radius: 9px; font-size: .91rem; font-weight: 500; }
+  .btn { display: inline-flex; justify-content: center; align-items: center; gap: 6px; min-height: 41px; padding: 7px 12px; border: 1px solid #bdcdd2; border-radius: 8px; color: var(--ink); background: #fff; font-size: .87rem; font-weight: 700; }
+  .btn:hover { background: #f2f8f8; }
+  .btn.primary { border-color: var(--teal); background: var(--teal); color: #fff; }
+  .btn.primary:hover { background: #00574f; }
+  .layout { display: grid; grid-template-columns: minmax(250px, .7fr) minmax(0, 2fr); align-items: start; gap: 18px; }
+  .panel { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); min-width: 0; }
+  .panel-head { padding: 15px 17px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); gap: 12px; }
+  .panel-head h2 { font-size: 1rem; }
+  .small { font-size: .83rem; color: var(--muted); }
+  .account-list { display: grid; padding: 7px; gap: 3px; }
+  .account { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; width: 100%; text-align: left; padding: 10px; border: 1px solid transparent; border-radius: 9px; background: transparent; color: var(--ink); }
+  .account:hover { background: #f1f6f7; }
+  .account[aria-pressed="true"] { background: var(--teal-soft); border-color: #acd6c9; }
+  .account strong, .account small { display: block; }
+  .account strong { font-size: .96rem; line-height: 1.35; }
+  .account small { color: var(--muted); margin-top: 2px; line-height: 1.4; }
+  .score-tag { min-width: 34px; padding: 3px 6px; border-radius: 7px; background: #ecf2f4; color: #214352; font-weight: 750; align-self: center; text-align: center; font-variant-numeric: tabular-nums; }
+  .account[aria-pressed="true"] .score-tag { background: #cce7dd; }
+  .empty { padding: 20px; }
+  .brief { padding: clamp(17px, 3vw, 28px); }
+  .brief-header { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 18px; align-items: start; }
+  .brief-header h2 { font-size: clamp(1.65rem, 3vw, 2.55rem); line-height: 1.08; letter-spacing: -.052em; margin-top: 6px; }
+  .brief .eyebrow { color: var(--teal); }
+  .title-line { color: var(--muted); margin-top: 8px; font-size: .9rem; }
+  .score-box { text-align: right; min-width: 78px; }
+  .score-box strong { display: block; color: var(--teal); font-size: 2.1rem; font-weight: 750; letter-spacing: -.06em; line-height: 1; }
+  .score-box small { color: var(--muted); font-size: .78rem; }
+  .badge { display: inline-flex; align-items: center; color: #1b4a57; background: var(--blue-soft); border-radius: 999px; padding: 4px 9px; font-weight: 700; font-size: .75rem; line-height: 1.2; }
+  .badge.high { background: var(--teal-soft); color: var(--teal); }
+  .badge.watch { background: var(--amber-soft); color: var(--amber); }
+  .summary { margin: 20px 0; padding: 15px 16px; border-left: 3px solid var(--teal); border-radius: 0 10px 10px 0; background: #edf7f4; }
+  .summary p + p { margin-top: 7px; }
+  .section { margin-top: 23px; }
+  .section h3 { font-size: 1.1rem; letter-spacing: -.015em; margin-bottom: 8px; }
+  .section-label { font-size: .8rem; font-weight: 750; color: var(--muted); letter-spacing: .045em; text-transform: uppercase; }
+  .evidence-grid, .pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .tile { padding: 12px 13px; border: 1px solid var(--line); border-radius: 10px; background: #fbfdfd; min-width: 0; }
+  .tile time { display: block; color: var(--muted); font-size: .76rem; margin-bottom: 3px; }
+  .tile strong { display: block; line-height: 1.34; }
+  .tile p { margin: 6px 0; font-size: .89rem; }
+  .tile a { font-size: .8rem; font-weight: 650; overflow-wrap: anywhere; }
+  .fit-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; padding: 10px 0 0; }
+  .fit-grid span { display: block; color: var(--muted); font-size: .76rem; }
+  .fit-grid strong { font-variant-numeric: tabular-nums; }
+  progress { display: block; width: 100%; margin-top: 5px; height: 7px; appearance: none; }
+  progress::-webkit-progress-bar { background: #e2ebec; border-radius: 8px; }
+  progress::-webkit-progress-value { background: #168578; border-radius: 8px; }
+  progress::-moz-progress-bar { background: #168578; border-radius: 8px; }
+  .roles { display: grid; gap: 6px; }
+  .role { display: grid; grid-template-columns: minmax(130px, .7fr) minmax(0, 1.25fr) minmax(0, 1.1fr); gap: 8px; padding: 9px 10px; border-bottom: 1px solid var(--line); }
+  .role:last-child { border-bottom: 0; }
+  .role p { overflow-wrap: anywhere; }
+  .role .tagged { font-size: .8rem; font-weight: 750; color: var(--teal); }
+  .role .role-open { color: var(--muted); }
+  .outreach { background: #f4f7fa; border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+  .outreach .panel-head { padding: 11px 13px; }
+  .outreach-body { padding: 13px; }
+  .draft { margin: 8px 0 0; white-space: pre-wrap; overflow-wrap: anywhere; font: inherit; font-size: .91rem; }
+  .actions { display: flex; flex-wrap: wrap; gap: 7px; }
+  .method { padding: clamp(17px, 3vw, 28px); max-width: 980px; }
+  .method h2, .evidence-view h2 { font-size: 1.65rem; letter-spacing: -.04em; margin-bottom: 8px; }
+  .method h3 { font-size: 1.08rem; margin-top: 18px; margin-bottom: 5px; }
+  .method p + p { margin-top: 8px; }
+  .method ul { padding-inline-start: 21px; }
+  .evidence-view { padding: 19px; }
+  .evidence-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+  .evidence-list .tile { display: flex; flex-direction: column; }
+  .evidence-list .tile .source-link { margin-top: auto; }
+  .toast { position: fixed; z-index: 5; right: 22px; bottom: 22px; max-width: min(360px, 100% - 44px); background: var(--navy); color: #fff; border-radius: 9px; padding: 9px 14px; box-shadow: var(--shadow); }
+  footer { border-top: 1px solid var(--line); padding: 16px 0 25px; color: var(--muted); font-size: .82rem; }
+  @media (max-width: 1050px) {
+    .shell { width: min(1440px, 100% - 38px); }
+    .hero-inner { grid-template-columns: 1fr; gap: 16px; }
+    .metrics { max-width: 690px; }
+    .evidence-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 720px) {
+    .shell { width: calc(100% - 26px); }
+    .topline { min-height: 58px; }
+    .topdate { font-size: .74rem; text-align: right; }
+    .hero { padding: 24px 0; }
+    .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .metric:nth-child(3) { border-left: 0; }
+    .metric:nth-child(n+3) { border-top: 1px solid #ffffff29; }
+    .layout, .evidence-list { grid-template-columns: 1fr; }
+    .account-list { max-height: 240px; overflow-y: auto; }
+    .role { grid-template-columns: 1fr; gap: 2px; }
+    .tools { gap: 8px; }
+    .search { flex-basis: 100%; }
+  }
+  @media (max-width: 400px) { .pair, .evidence-grid { grid-template-columns: 1fr; } .fit-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media print {
+    body { background: white; }
+    .top, .hero, .nav, .tools, .account-panel, .actions, footer, .toast { display: none !important; }
+    .shell { width: 100%; }
+    main { padding: 0; }
+    .layout { display: block; }
+    .panel { box-shadow: none; border: 0; }
+    .tile, .section, .summary { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="top">
+    <div class="shell topline">
+      <div class="identity"><span class="mark" aria-hidden="true">M</span><span class="brand">MASS Group <span style="font-weight: 500; color: #cfdee3">/ Intelligence</span></span></div>
+      <span class="topdate" id="snapshot-date"></span>
+    </div>
+  </header>
+  <div class="hero">
+    <div class="shell hero-inner">
+      <div>
+        <p class="eyebrow">GTM intelligence prototype</p>
+        <h1>Defense manufacturing</h1>
+        <p class="hero-copy">Public evidence, stakeholder maps, and account action briefs for TME® manufacturing traceability.</p>
+      </div>
+      <div class="metrics" id="metrics" aria-label="Snapshot metrics"></div>
+    </div>
+  </div>
+  <nav class="nav" aria-label="Dashboard views">
+    <div class="shell nav-inner">
+      <button type="button" data-view="accounts" aria-current="page">Accounts</button>
+      <button type="button" data-view="evidence">Evidence</button>
+      <button type="button" data-view="method">Methodology</button>
+    </div>
+  </nav>
+  <main class="shell" id="main">
+    <noscript><p>This standalone dashboard needs JavaScript for filtering and displaying account briefs.</p></noscript>
+    <div id="view"></div>
+  </main>
+  <footer><div class="shell">Public-source research for MASS Group. Account scores express prioritization hypotheses. Outreach is presented as draft copy.</div></footer>
+  <div id="toast" class="toast" role="status" hidden></div>
+  <script id="snapshot" type="application/json">{"accounts":[{"id":"woodward","name":"Woodward","domain":"woodward.com","segment":"Precision components","location":"Spartanburg, SC","awardId":"SPE4A726PD514","operationalFit":30,"signalSpecificity":30,"workflow":"Workcell transfer and record continuity","fit":"A new aerospace manufacturing campus and a documented production move make Woodward a strong candidate for a bounded pilot on work orders, inspection evidence, and material continuity.","signal":{"date":"2026-09-21","title":"Aerospace production transfer announced","fact":"Woodward announced plans to move aerospace controls production from Santa Clarita to its new Spartanburg manufacturing campus, which also supports commercial aerospace growth.","publisher":"Woodward investor relations","url":"https://ir.woodward.com/news/news-details/2026/Woodward-Plans-to-Transition-Its-Santa-Clarita-California-Aerospace-Controls-Production-to-Spartanburg-South-Carolina/default.aspx"},"awardContext":"The separate DLA supply award names Woodward FST, Inc. The award and campus announcement refer to different operating scopes.","hypothesis":"Transferring work to a new campus may make it useful to verify that inspection and material records travel cleanly with the work order.","validation":"Confirm which commercial workcell is in scope, what the transfer calendar permits, and where the receiving site already has ERP or MES coverage.","stakeholders":[{"role":"Business sponsor","name":"Shawn McLevige","title":"EVP and President, Aerospace","url":"https://www.woodward.com/leadership/shawn-mclevige/","status":"Company-confirmed"},{"role":"Systems approver","name":"Paxton McVoy","title":"Executive Vice President and Chief Information Officer","url":"https://www.woodward.com/leadership/","status":"Company-confirmed"},{"role":"Site champion","name":null,"title":"Spartanburg manufacturing systems or quality lead","url":null,"status":"Role to identify"}],"next":"Ask the aerospace segment to nominate a commercial workcell owner. Offer a transition-readiness review of traveler revisions and whether inspection evidence transfers with the order.","outreach":{"subject":"Traceability through the Spartanburg workcell transfer","body":"Hi Shawn,\n\nI read Woodward’s September announcement about moving aerospace controls production to Spartanburg. When a commercial workcell transfers, who checks that the traveler revision and inspection history are available when the receiving team starts work?\n\nMASS Group’s TME links work instructions, material records, and inspection evidence. Would it help to compare one commercial workcell’s transfer checklist with your operations and IT leads before the next cutover?\n\nMASS Group"},"award":{"id":"SPE4A726PD514","date":"2026-07-10","recipient":"WOODWARD FST, INC","amount":987319.8,"agency":"Defense Logistics Agency","url":"https://www.usaspending.gov/award/CONT_AWD_SPE4A726PD514_9700_-NONE-_-NONE-"},"score":100,"points":{"fit":30,"timing":30,"award":25,"access":15},"priority":"Prioritize"},{"id":"aar","name":"AAR Corp.","domain":"aarcorp.com","segment":"Aviation MRO","location":"Miami, FL · Oklahoma City, OK","awardId":"FA820326F0004","operationalFit":30,"signalSpecificity":30,"workflow":"Hangar work packs and material handoffs","fit":"AAR operates airframe maintenance and component repair businesses at multiple locations. TME® can be evaluated for work-pack tasks that tie parts, inspection sign-offs, and exception records to a maintenance event.","signal":{"date":"2026-08-17","title":"New Miami airframe MRO hangar","fact":"AAR and Miami-Dade officials marked the completion of the expanded Miami International Airport airframe MRO facility with a ribbon cutting.","publisher":"AAR announcement","url":"https://prod.website.aarcorp.com/en/newsroom/aar-news/aar-celebrates-ribbon-cutting-for-airframe-mro-facility-expansion-in-miami/"},"awardContext":"The Air Force record belongs to AAR Government Services, Inc. and establishes a separate group-level defense sustainment relationship.","hypothesis":"Starting work on additional maintenance lines creates a natural time to compare how material handoffs and sign-offs are recorded across bays.","validation":"Check which functions are already handled by AAR’s existing MRO tools, including its Trax business. Qualify a narrow gap with facility quality rather than framing an enterprise replacement.","stakeholders":[{"role":"Business sponsor","name":"Tom Hoferer","title":"Senior Vice President, Repair & Engineering","url":"https://prod.website.aarcorp.com/en/about/corporate-officers/tom-hoferer/","status":"Company-confirmed"},{"role":"Quality approver","name":"Art R. Smith","title":"Vice President and Chief Quality Officer","url":"https://www.aarcorp.com/en/about/corporate-officers/art-r.-smith","status":"Company-confirmed"},{"role":"Workflow lead","name":"Nicholas Dopfel","title":"Vice President, Aircraft Operations MRO Engineering","url":"https://www.linkedin.com/in/nicholas-dopfel-7414b460/","status":"Deepline candidate · verify role"}],"next":"Ask Repair & Engineering to name the Miami operations lead for a single work-pack handoff. Compare current elapsed time and completeness against a small pilot.","outreach":{"subject":"A work-pack handoff question for AAR’s new Miami bays","body":"Hi Tom,\n\nI saw AAR cut the ribbon on its Miami airframe MRO expansion. As the new bays take on work, is there one material handoff or inspection sign-off that still takes extra effort to reconcile across the work pack?\n\nMASS Group’s TME can tie serialized parts and quality checks to a digital work history. Would a short discussion with the site lead make sense to see whether one handoff could benefit alongside your existing MRO tools?\n\nMASS Group"},"award":{"id":"FA820326F0004","date":"2026-04-01","recipient":"AAR GOVERNMENT SERVICES, INC.","amount":38546875.8,"agency":"Department of the Air Force","url":"https://www.usaspending.gov/award/CONT_AWD_FA820326F0004_9700_FA820317D1226_9700"},"score":100,"points":{"fit":30,"timing":30,"award":25,"access":15},"priority":"Prioritize"},{"id":"standardaero","name":"StandardAero","domain":"standardaero.com","segment":"Aviation MRO","location":"San Antonio, TX · Winnipeg, MB","awardId":"FA812426FB042","operationalFit":30,"signalSpecificity":27,"workflow":"Repair traveler and inspection traceability","fit":"StandardAero operates engine MRO shops for commercial and government customers. A shop-level repair traveler is a practical TME® use case because receiving, routing, inspections, and release records must stay tied to one serialized job.","signal":{"date":"2026-09-03","title":"Winnipeg MRO expansion opened","fact":"StandardAero reported that its Winnipeg expansion increased the facility footprint by 40% and expanded engine MRO capacity.","publisher":"StandardAero announcement","url":"https://ir.standardaero.com/news-events/press-releases/detail/166/standardaero-celebrates-official-opening-of-its-expanded-facility-in-winnipeg"},"awardContext":"The U.S. award names Standard Aero (San Antonio) Inc. for public depot maintenance work. The Winnipeg news is a separate corporate MRO capacity signal.","hypothesis":"A growing shop network may benefit from a common traveler and inspection format that preserves local work instructions.","validation":"Ask which U.S. or Canadian shop owns traveler templates, where inspection evidence is stored, and whether a shop is standardizing its workflow. Confirm the incumbent MRO and ERP systems.","stakeholders":[{"role":"Business sponsor","name":"Marc Drobny","title":"President, Engine Services – Military, Helicopters & Energy","url":"https://ir.standardaero.com/company-info/executive-team","status":"Company-confirmed"},{"role":"Workflow lead","name":"Richard Rockers","title":"Vice President, Operations Excellence","url":"https://www.linkedin.com/in/richardrockers/","status":"Deepline candidate · verify role"},{"role":"Quality approver","name":null,"title":"Shop quality and release authority","url":null,"status":"Role to identify"}],"next":"Ask the Engine Services team for the owner of one commercial or sustainment shop traveler. Propose a small review of inspection evidence retrieval with representative, non-sensitive records.","outreach":{"subject":"A repair-traveler question after the Winnipeg expansion","body":"Hi Marc,\n\nI saw StandardAero opened the Winnipeg MRO expansion and added floor space to increase capacity. When another shop adds throughput, who owns keeping the serialized traveler and final inspection evidence consistent from receiving to release?\n\nMASS Group’s TME supports digital travelers and part-level traceability. If there’s a shop standardizing that handoff, would you point me to the operations or quality lead for a 15-minute comparison on one repair workflow?\n\nMASS Group"},"award":{"id":"FA812426FB042","date":"2026-05-05","recipient":"STANDARD AERO (SAN ANTONIO) INC.","amount":28988015.22,"agency":"Department of the Air Force","url":"https://www.usaspending.gov/award/CONT_AWD_FA812426FB042_9700_FA812420D0005_9700"},"score":94,"points":{"fit":30,"timing":27,"award":25,"access":12},"priority":"Prioritize"},{"id":"howmet","name":"Howmet Aerospace","domain":"howmet.com","segment":"Precision components","location":"Pittsburgh, PA · Fastening Systems sites","awardId":"SPE7L126V082J","operationalFit":30,"signalSpecificity":26,"workflow":"Lot genealogy across acquired fastener operations","fit":"Howmet’s aerospace fastening portfolio and recent acquisition create a plausible use for reconciling lot identifiers, inspection events, and release records across a newly combined business.","signal":{"date":"2026-04-06","title":"CAM acquisition completed","fact":"Howmet’s SEC filing records the April closing of Consolidated Aerospace Manufacturing, expanding its portfolio of aerospace fasteners and related components.","publisher":"Howmet Q3 2026 SEC filing","url":"https://www.sec.gov/Archives/edgar/data/4281/000000428126000036/hwm-20260930.htm"},"awardContext":"A DLA supply award names Howmet Global Fastening Systems Inc. as the recipient. It anchors the defense customer relationship for the relevant business.","hypothesis":"Post-close integration may expose differences in how facilities capture lot and release evidence, creating room for a common evidence model.","validation":"Identify which sites are in the integration scope and whether an existing MES or QMS standard already covers the trial workflow.","stakeholders":[{"role":"Business sponsor","name":"Vagner Finelli","title":"President, Fastening Systems","url":"https://www.howmet.com/executive-leadership/","status":"Company-confirmed"},{"role":"Systems reviewer","name":"Sandeep Kuthe","title":"Business-unit CIO, Howmet Fastening Systems","url":"https://www.linkedin.com/in/sandeep-kuthe/","status":"Deepline candidate · verify role"},{"role":"Quality champion","name":null,"title":"CAM integration quality or plant operations owner","url":null,"status":"Role to identify"}],"next":"Ask Fastening Systems to nominate one acquired site and one representative lot. Review whether receiving and inspection records can be reconstructed across systems.","outreach":{"subject":"Lot genealogy during the CAM integration","body":"Hi Vagner,\n\nHowmet’s filing noted the April closing of CAM. When two fastening operations bring their processes together, how does the team compare lot and release records for the first product family in scope?\n\nMASS Group’s TME supports lot genealogy and linked inspection evidence. If traceability is on the integration checklist, would you point me to the plant quality or systems owner for a short walk-through of one lot record?\n\nMASS Group"},"award":{"id":"SPE7L126V082J","date":"2026-07-01","recipient":"HOWMET GLOBAL FASTENING SYSTEMS INC","amount":208600,"agency":"Defense Logistics Agency","url":"https://www.usaspending.gov/award/CONT_AWD_SPE7L126V082J_9700_-NONE-_-NONE-"},"score":93,"points":{"fit":30,"timing":26,"award":25,"access":12},"priority":"Prioritize"},{"id":"moog","name":"Moog","domain":"moog.com","segment":"Precision components","location":"East Aurora, NY","awardId":"SPRTA126F0215","operationalFit":28,"signalSpecificity":27,"workflow":"Serialized assembly and test evidence","fit":"Moog’s commercial aircraft business involves precision assemblies and tested hardware. A TME® pilot can focus on keeping build history and test results associated with serialized commercial assemblies.","signal":{"date":"2026-08-14","title":"Advanced Integrated Manufacturing facility opened","fact":"Moog announced a new Advanced Integrated Manufacturing facility in East Aurora and described ongoing investment in facilities and technical workforce training.","publisher":"Moog announcement","url":"https://www.moog.com/news/operating-group-news/2026/moog-celebrates-75-years.html"},"awardContext":"The DLA award names Moog Military Aircraft LLC as the recipient of a mechanical component order. The proposed trial is a separate commercial workflow.","hypothesis":"A manufacturing footprint expansion offers a point to compare how assembly work instructions and test records are linked across handoffs.","validation":"Ask which commercial operations team could sponsor a trial, where test records are stored, and whether a current system provides unit-level genealogy.","stakeholders":[{"role":"Business sponsor","name":"Michael Schaff","title":"Vice President and President, Commercial Aircraft","url":"https://www.moog.com/investors/corporate-governance.html","status":"Company-confirmed"},{"role":"Systems reviewer","name":"Jeff Wilkinson","title":"Chief Information Officer","url":"https://www.linkedin.com/in/wilkinson/","status":"Deepline candidate · verify role"},{"role":"Quality champion","name":null,"title":"Commercial Aircraft manufacturing quality or test systems leader","url":null,"status":"Role to identify"}],"next":"Invite the Commercial Aircraft team to trace one non-sensitive serialized assembly from operation completion to test and release. Record where the evidence resides.","outreach":{"subject":"Linking assembly and test evidence in Moog’s commercial shops","body":"Hi Michael,\n\nMoog’s East Aurora opening highlighted how much the company is investing in manufacturing capacity. I’m curious how your commercial aircraft teams link a unit’s assembly history to final test evidence when the work spans different stations.\n\nMASS Group’s TME supports serialized work histories and digital quality records. Would you be open to a brief comparison on one commercial assembly with your manufacturing quality lead?\n\nMASS Group"},"award":{"id":"SPRTA126F0215","date":"2026-06-22","recipient":"MOOG MILITARY AIRCRAFT LLC","amount":17284178,"agency":"Defense Logistics Agency","url":"https://www.usaspending.gov/award/CONT_AWD_SPRTA126F0215_9700_SPE4A122G0008_9700"},"score":92,"points":{"fit":28,"timing":27,"award":25,"access":12},"priority":"Prioritize"},{"id":"oshkosh","name":"Oshkosh Corporation","domain":"oshkoshcorp.com","segment":"Vehicle manufacturing","location":"Spartanburg, SC · Oshkosh, WI","awardId":"W912CH25F0168","operationalFit":28,"signalSpecificity":28,"workflow":"Mixed-variant assembly and inspection records","fit":"Oshkosh runs purpose-built vehicle manufacturing at scale. Its delivery vehicle line is a useful environment to explore serial-level build records, inspection evidence, and rework traceability.","signal":{"date":"2026-07-28","title":"Spartanburg delivery vehicle ramp","fact":"Oshkosh’s second-quarter earnings presentation showed its South Carolina factory ramping production of postal delivery vehicles.","publisher":"Oshkosh Q2 2026 presentation","url":"https://www.investors.oshkoshcorp.com/media/document/9216029b-a73c-4df0-bc83-28c46d0f4550/assets/Q2_2026_Earnings_Slides_FINAL.pdf?disposition=inline"},"awardContext":"The Army award identifies Oshkosh Defense LLC as the recipient of an order for transport vehicles. The postal line is a separate manufacturing signal within the group.","hypothesis":"A ramped delivery vehicle line may need a reliable way to retrieve each vehicle’s component and rework records across shifts.","validation":"Determine the responsible manufacturing systems team, the production system already in place, and whether an inspection or rework handoff remains manual.","stakeholders":[{"role":"Business sponsor","name":"Steve Nordlund","title":"EVP, Oshkosh Corporation and President, Transport","url":"https://oshkoshdefense.com/leadership/steve-nordlund/","status":"Company-confirmed"},{"role":"Operations lead","name":"Matt Schreiner","title":"VP, Global Engineering, Operations and Supply Chain, Transport","url":"https://oshkoshdefense.com/leadership/matthew-schreiner/","status":"Company-confirmed"},{"role":"Systems reviewer","name":"Donald McCartney","title":"Global Vice President, Digital Operations","url":"https://www.linkedin.com/in/donald-mccartney/","status":"Deepline candidate · verify role"},{"role":"Site approver","name":null,"title":"Spartanburg line quality or manufacturing systems lead","url":null,"status":"Role to identify"}],"next":"Ask Transport Operations whether a postal vehicle station can be reviewed using sample serial and rework records. Measure record completeness and retrieval time.","outreach":{"subject":"Vehicle build records on the Spartanburg ramp","body":"Hi Matt,\n\nOshkosh’s July update showed the Spartanburg postal vehicle line ramping production. As volume rises, is the team able to pull the component history and rework evidence for a vehicle from one record?\n\nMASS Group’s TME supports serial-level traceability and digital quality records. Would you be open to a quick review of one inspection station with the Spartanburg manufacturing systems lead?\n\nMASS Group"},"award":{"id":"W912CH25F0168","date":"2025-02-04","recipient":"OSHKOSH DEFENSE LLC","amount":235287687.98,"agency":"Department of the Army","url":"https://www.usaspending.gov/award/CONT_AWD_W912CH25F0168_9700_W56HZV18D0010_9700"},"score":92,"points":{"fit":28,"timing":28,"award":21,"access":15},"priority":"Prioritize"},{"id":"astronics","name":"Astronics","domain":"astronics.com","segment":"Aerospace electronics","location":"East Aurora, NY · U.S. operating sites","awardId":"M6785426F5105","operationalFit":28,"signalSpecificity":20,"workflow":"Electronics build and release-test traceability","fit":"Astronics manufactures commercial aerospace electronics and test equipment through distinct businesses. TME® is a candidate for one commercial electronics line where serialized build and release-test evidence need a shared record.","signal":{"date":"2026-11-10","title":"Commercial transport sales rose 28.8%","fact":"In its third-quarter release, Astronics reported year-over-year commercial transport sales growth of 28.8% and record quarterly Aerospace sales.","publisher":"Astronics Q3 2026 release","url":"https://investors.astronics.com/news-events/press-releases/detail/467/astronics-corporation-reports-record-operating-income-on"},"awardContext":"The Navy award names Astronics Test Systems Inc. as recipient for test equipment. The proposed pilot concerns a commercial Aerospace line, a separate operating scope.","hypothesis":"Rising commercial volume increases the value of being able to retrieve a unit’s assembly and test records without manual cross-references.","validation":"Find a site with an actual quality-record retrieval problem. Verify local ownership and whether the current test tool exports a stable serial identifier.","stakeholders":[{"role":"Business sponsor","name":"Mark Peabody","title":"President, Astronics Aerospace","url":"https://investors.astronics.com/company-information/management-team","status":"Company-confirmed"},{"role":"Segment counterpart","name":"Jim Mulato","title":"President, Astronics Test Systems","url":"https://investors.astronics.com/company-information/management-team","status":"Company-confirmed"},{"role":"Workflow champion","name":null,"title":"Commercial electronics quality or test engineering lead","url":null,"status":"Role to identify"}],"next":"Ask Aerospace Operations to identify one commercial electronics assembly line and arrange a short review of the handoff between testing and quality release.","outreach":{"subject":"Serial-to-test history as Astronics commercial volumes grow","body":"Hi Mark,\n\nAstronics reported commercial transport sales up 28.8% in Q3. With that volume, is there an electronics line where quality has to reconcile the build record and final test result by hand?\n\nMASS Group’s TME links inspection and test evidence to a serialized work history. Would a quick review with a commercial site’s quality or test engineering lead be useful if that handoff is on your list?\n\nMASS Group"},"award":{"id":"M6785426F5105","date":"2026-02-20","recipient":"ASTRONICS TEST SYSTEMS INC","amount":9499594.73,"agency":"Department of the Navy","url":"https://www.usaspending.gov/award/CONT_AWD_M6785426F5105_9700_M6785423D5101_9700"},"score":88,"points":{"fit":28,"timing":20,"award":25,"access":15},"priority":"Prioritize"},{"id":"hexcel","name":"Hexcel","domain":"hexcel.com","segment":"Specialty materials","location":"Wichita, KS · Americas operations","awardId":"SPE8E525P0307","operationalFit":27,"signalSpecificity":24,"workflow":"Composite material lots and qualification evidence","fit":"Hexcel supplies advanced composite materials for aerospace. Its manufacturing collaboration is a natural setting to evaluate how input lot, process history, and test evidence can be traced across a pilot workflow.","signal":{"date":"2026-05-28","title":"Wichita applications center broke ground","fact":"Hexcel and Wichita State’s NIAR broke ground on an applications center focused on composites, automated processing, and manufacturing development.","publisher":"Hexcel announcement","url":"https://investors.hexcel.com/investor-relations/news/news-details/2026/Hexcel-NIAR-Break-Ground-on-New-Hexcel-Applications-Center-at-Wichita-State-University/default.aspx"},"awardContext":"The DLA award names Hexcel Corp for reinforcing material. It is an older account-level defense tie, separate from the applications center.","hypothesis":"A development center may be a useful place to test evidence continuity through preparation, processing, and qualification activities before a production rollout.","validation":"Confirm who owns the development records and whether a prototype workflow can be shared. Establish which partner has authority over systems selection.","stakeholders":[{"role":"Business sponsor","name":"Lyndon Smith","title":"President, Americas & Global Fibers","url":"https://investors.hexcel.com/investor-relations/governance/board-of-directors/person-details/default.aspx?ItemId=9ebcb031-e7dc-4e39-b544-3c693a1fbac2","status":"Company-confirmed"},{"role":"Operations lead","name":"Shane Wright","title":"Vice President of Operations, Global Fibers and Americas Composite Materials","url":"https://www.linkedin.com/in/shane-wright-10b76384/","status":"Deepline candidate · verify role"},{"role":"Workflow champion","name":null,"title":"Applications center manufacturing or qualification lead","url":null,"status":"Role to identify"}],"next":"Ask the Americas team whether an applications-center lead can review a representative non-sensitive coupon or test-lot record with MASS Group.","outreach":{"subject":"A lot-to-test traceability question for the Wichita center","body":"Hi Lyndon,\n\nI saw Hexcel and NIAR broke ground on the Wichita applications center, with automated composites processing among its focus areas. When a pilot run goes from material prep through test, where do teams connect the input lot to its qualification evidence?\n\nMASS Group’s TME supports lot-level traceability and digital quality records. Would you point me to the applications or operations lead if a short walk-through of one pilot record would be helpful?\n\nMASS Group"},"award":{"id":"SPE8E525P0307","date":"2024-12-06","recipient":"HEXCEL CORP","amount":240300,"agency":"Defense Logistics Agency","url":"https://www.usaspending.gov/award/CONT_AWD_SPE8E525P0307_9700_-NONE-_-NONE-"},"score":84,"points":{"fit":27,"timing":24,"award":21,"access":12},"priority":"Explore"},{"id":"carpenter","name":"Carpenter Technology","domain":"carpentertechnology.com","segment":"Specialty materials","location":"Reading, PA · U.S. specialty alloy sites","awardId":"N0016724P0275","operationalFit":30,"signalSpecificity":24,"workflow":"Heat, lot, and release-record continuity","fit":"Specialty alloy production requires controlled lot records and repeatable test and release steps. The TME® fit is a narrowly scoped workflow for making those records easier to retrieve.","signal":{"date":"2026-09-10","title":"Brownfield capacity projects on schedule","fact":"Carpenter’s FY2026 proxy reported that its brownfield capacity expansion projects remained on budget and on schedule, alongside productivity and product-mix initiatives.","publisher":"Carpenter SEC proxy filing","url":"https://www.sec.gov/Archives/edgar/data/17843/000119312526389294/crs-20260910.htm"},"awardContext":"The Navy award names Carpenter Technology Corporation directly and concerns a materials-production order. The award record is an older sector tie.","hypothesis":"New capacity inside an existing plant may create a checkpoint for how lot records, lab results, and release evidence are handed off.","validation":"Confirm the active project and its accountable plant manager. Check which quality and ERP tools already retain test results and how evidence is retrieved.","stakeholders":[{"role":"Business sponsor","name":"Marshall Akins","title":"Senior Vice President and Chief Operating Officer","url":"https://www.sec.gov/Archives/edgar/data/17843/000001784326000052/crs-cooccotransitionxfinal.htm","status":"Company-confirmed"},{"role":"Planning influencer","name":"William Herbert","title":"VP, Planning, Specialty Alloy Operations","url":"https://www.linkedin.com/in/william-herbert-0b295631/","status":"Deepline candidate · verify role"},{"role":"Quality approver","name":null,"title":"Specialty Alloys plant quality or laboratory systems lead","url":null,"status":"Role to identify"}],"next":"Ask Specialty Alloys Operations for one expanded production route. Walk one sample lot from material receipt through test disposition and release.","outreach":{"subject":"A lot-record check for Carpenter’s brownfield expansion","body":"Hi Marshall,\n\nCarpenter’s FY2026 proxy said the brownfield capacity projects were progressing on schedule. Is one project approaching the point where operations needs to verify how heat and lot records connect to test results and release?\n\nMASS Group’s TME supports that traceability across work steps. Would it be useful to compare how one lot is reconstructed today with the plant quality or production-planning lead?\n\nMASS Group"},"award":{"id":"N0016724P0275","date":"2024-09-25","recipient":"CARPENTER TECHNOLOGY CORPORATION","amount":235409.5,"agency":"Department of the Navy","url":"https://www.usaspending.gov/award/CONT_AWD_N0016724P0275_9700_-NONE-_-NONE-"},"score":83,"points":{"fit":30,"timing":24,"award":17,"access":12},"priority":"Explore"},{"id":"ducommun","name":"Ducommun","domain":"ducommun.com","segment":"Precision components","location":"Costa Mesa, CA · U.S. operating sites","awardId":"FA853825F0058","operationalFit":28,"signalSpecificity":20,"workflow":"Inspection and rework visibility across shifts","fit":"Ducommun combines electronics and structural manufacturing. A TME® trial could help an operating site validate whether separate inspection and rework records can be retrieved consistently for a commercial build.","signal":{"date":"2026-11-05","title":"Commercial aerospace revenue rose 28%","fact":"Ducommun’s Q3 2026 earnings presentation reported 28% year-over-year commercial aerospace growth and described efforts to prepare for production ramp-up.","publisher":"Ducommun Q3 investor presentation","url":"https://investors.ducommun.com/static-files/1b5ac60f-54bc-46ac-ace8-da2ef7efb57c"},"awardContext":"The Air Force MRO delivery order names Ducommun LaBarge Technologies, Inc. It establishes the government business tie through the electronics subsidiary.","hypothesis":"Higher commercial volume may increase the cost of reconciling inspection exceptions if a product line uses records spread across systems or shifts.","validation":"Identify a commercial line under capacity pressure, check quality ownership, and ask whether rework evidence is already captured in a linked system.","stakeholders":[{"role":"Business sponsor","name":"Jerry Redondo","title":"Senior Vice President, Electronics & Structural Systems","url":"https://investors.ducommun.com/corporate-governance/management","status":"Company-confirmed"},{"role":"Systems reviewer","name":"Eric White","title":"Director of IT Operations","url":"https://www.linkedin.com/in/eric-white-88abbbb6/","status":"Deepline candidate · verify role"},{"role":"Quality champion","name":null,"title":"Commercial site quality or manufacturing operations leader","url":null,"status":"Role to identify"}],"next":"Ask Electronics & Structural Systems to nominate a commercial line. Review one first-pass inspection exception and how it is closed across shifts.","outreach":{"subject":"Inspection exceptions during Ducommun’s commercial ramp","body":"Hi Jerry,\n\nYour latest investor materials showed commercial aerospace revenue up 28% year over year. As those lines scale, is there a site where the quality team spends extra time linking a rework disposition back to the original work order?\n\nMASS Group’s TME supports a shared record for build, inspection, and rework. If a site is already reviewing that handoff, could we compare one example with its operations and quality leads?\n\nMASS Group"},"award":{"id":"FA853825F0058","date":"2025-06-17","recipient":"DUCOMMUN LABARGE TECHNOLOGIES, INC","amount":557342,"agency":"Department of the Air Force","url":"https://www.usaspending.gov/award/CONT_AWD_FA853825F0058_9700_FA853822D0004_9700"},"score":81,"points":{"fit":28,"timing":20,"award":21,"access":12},"priority":"Explore"}],"meta":{"asOf":"2026-11-25","startDate":"2024-01-01","credits":0,"deeplineSearches":10,"api":"https://api.usaspending.gov/api/v2/search/spending_by_award/","apiDocs":"https://api.usaspending.gov/docs/intro-tutorial","mass":"https://www.massgroup.com/who-we-serve/aerospace-defense","deepline":"https://deepline.com/skills/deepline-gtm"},"rubric":[{"key":"fit","label":"Operations fit","max":30,"explanation":"Analyst-scored from 22 to 30 for evidence that a traceability, inspection, or work-instruction workflow fits the public MASS Group product scope. A specific production or shop handoff earns the highest values."},{"key":"timing","label":"Signal specificity","max":30,"explanation":"Analyst-scored from 20 to 30. Segment growth disclosures score 20, dated expansion research or integration milestones score 24–28, and a named site opening or production transfer scores 30."},{"key":"award","label":"DoD award recency","max":25,"explanation":"25 points for an award start in the previous 365 days, 21 for 366–730 days, and 17 for older records visible in the query window."},{"key":"access","label":"Stakeholder evidence","max":15,"explanation":"15 points for two or more company-confirmed named roles, 12 for one confirmed and one sourced candidate, and 10 for one confirmed role."}]}</script>
+  <script>
+"use strict";
+
+const snapshot = JSON.parse(document.querySelector("#snapshot").textContent);
+const { accounts, meta, rubric } = snapshot;
+const view = document.querySelector("#view");
+const toast = document.querySelector("#toast");
+const state = { view: "accounts", account: accounts[0].id, query: "", segment: "", order: "score", evidenceAccount: "" };
+const dateFormatter = new Intl.DateTimeFormat("en-US", { dateStyle: "medium", timeZone: "UTC" });
+const currency = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
+let toastTimer;
+
+function html(value) {
+  return String(value ?? "").replace(/[&<>"']/g, (character) => ({
+    "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+  })[character]);
+}
+
+function date(value) {
+  return dateFormatter.format(new Date(value + "T00:00:00Z"));
+}
+
+function source(url, label) {
+  if (!/^https:\/\//i.test(url)) return "";
+  return '<a class="source-link" href="' + html(url) + '" target="_blank" rel="noopener noreferrer">' + html(label) + ' ↗</a>';
+}
+
+function options(values, selected) {
+  return values.map(([value, label]) =>
+    '<option value="' + html(value) + '"' + (value === selected ? " selected" : "") + ">" + html(label) + "</option>"
+  ).join("");
+}
+
+function showToast(message) {
+  toast.textContent = message;
+  toast.hidden = false;
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => { toast.hidden = true; }, 2800);
+}
+
+function visibleAccounts() {
+  const query = state.query.trim().toLowerCase();
+  const matches = accounts.filter((account) =>
+    (!state.segment || state.segment === account.segment) &&
+    [account.name, account.domain, account.segment, account.location, account.workflow,
+      ...account.stakeholders.flatMap((role) => [role.name, role.title, role.role])]
+      .join(" ").toLowerCase().includes(query)
+  );
+  return matches.sort((first, second) => {
+    if (state.order === "name") return first.name.localeCompare(second.name);
+    if (state.order === "signal") return second.signal.date.localeCompare(first.signal.date) || second.score - first.score;
+    return second.score - first.score || second.signal.date.localeCompare(first.signal.date);
+  });
+}
+
+function evidence(account) {
+  return [
+    {
+      label: "Commercial signal", date: account.signal.date, title: account.signal.title,
+      detail: account.signal.fact, url: account.signal.url, publisher: account.signal.publisher
+    },
+    {
+      label: "DoD award record", date: account.award.date, title: account.award.id,
+      detail: [account.award.agency, account.award.recipient, currency.format(account.award.amount) + " reported award amount"].join(" · "),
+      url: account.award.url, publisher: "USAspending award record"
+    },
+    ...account.stakeholders.filter((role) => role.url).map((role) => ({
+      label: "Stakeholder", date: null, title: role.name, detail: role.title + " · " + role.status,
+      url: role.url, publisher: role.status === "Company-confirmed" ? "Company source" : "Public professional profile"
+    }))
+  ];
+}
+
+function evidenceTile(item, accountName = "") {
+  const timing = item.date ? '<time datetime="' + item.date + '">' + date(item.date) + "</time>" : "";
+  return '<article class="tile"><p class="section-label">' + html(accountName ? accountName + " · " + item.label : item.label) +
+    "</p>" + timing + "<strong>" + html(item.title) + "</strong><p>" + html(item.detail) + "</p>" + source(item.url, item.publisher) + "</article>";
+}
+
+function roleRow(role) {
+  const holder = role.name ? "<strong>" + html(role.name) + "</strong>" : '<span class="role-open">Holder to identify</span>';
+  return '<div class="role"><p class="tagged">' + html(role.role) + "</p><p>" + holder +
+    '<br><span class="small">' + html(role.title) + '</span></p><p class="small">' + html(role.status) +
+    (role.url ? "<br>" + source(role.url, "Role evidence") : "") + "</p></div>";
+}
+
+function brief(account) {
+  const badgeClass = account.score >= 88 ? " high" : account.score < 79 ? " watch" : "";
+  const fit = rubric.map((dimension) =>
+    "<div><span>" + html(dimension.label) + "</span><strong>" + account.points[dimension.key] + " / " + dimension.max +
+    '</strong><progress aria-label="' + html(dimension.label) + '" max="' + dimension.max + '" value="' + account.points[dimension.key] + '"></progress></div>'
+  ).join("");
+  return `
+    <article class="panel brief" data-brief="${html(account.id)}" aria-labelledby="brief-title">
+      <header class="brief-header">
+        <div>
+          <p class="eyebrow">Account Action Brief</p>
+          <h2 id="brief-title" tabindex="-1">${html(account.name)}</h2>
+          <p class="title-line">${html(account.segment)} · ${html(account.location)} · ${html(account.domain)}</p>
+        </div>
+        <div class="score-box"><strong>${account.score}</strong><small>Fit / 100</small><br><span class="badge${badgeClass}">${html(account.priority)}</span></div>
+      </header>
+      <div class="summary"><p><strong>${html(account.workflow)}</strong></p><p>${html(account.fit)}</p></div>
+      <section class="section">
+        <h3>Evidence behind the brief</h3>
+        <div class="evidence-grid">${evidence(account).slice(0, 2).map((item) => evidenceTile(item)).join("")}</div>
+        <p class="small" style="margin-top: 7px">${html(account.awardContext)}</p>
+      </section>
+      <section class="section">
+        <h3>Buying hypothesis</h3>
+        <div class="pair">
+          <div class="tile"><strong>Why it may matter</strong><p>${html(account.hypothesis)}</p></div>
+          <div class="tile"><strong>What to validate</strong><p>${html(account.validation)}</p></div>
+        </div>
+        <div class="fit-grid" aria-label="Fit score breakdown">${fit}</div>
+      </section>
+      <section class="section">
+        <h3>Stakeholder map</h3>
+        <div class="roles">${account.stakeholders.map(roleRow).join("")}</div>
+        <p class="small">Roles in the buying process are hypotheses. Confirm the site owner and approval path in discovery.</p>
+      </section>
+      <section class="section">
+        <h3>Recommended next action</h3>
+        <p>${html(account.next)}</p>
+      </section>
+      <section class="section outreach">
+        <div class="panel-head">
+          <div><strong>Personalized outreach draft</strong><p class="small">For review before sending</p></div>
+          <div class="actions">
+            <button class="btn primary" type="button" data-action="copy" data-id="${html(account.id)}">Copy draft</button>
+            <button class="btn" type="button" data-action="brief" data-id="${html(account.id)}">Download brief</button>
+          </div>
+        </div>
+        <div class="outreach-body"><p><strong>Subject</strong> · ${html(account.outreach.subject)}</p><pre class="draft">${html(account.outreach.body)}</pre></div>
+      </section>
+    </article>`;
+}
+
+function renderAccounts() {
+  const segments = Array.from(new Set(accounts.map((account) => account.segment))).sort();
+  view.innerHTML = `
+    <div class="tools">
+      <label class="field search">Search accounts or stakeholders
+        <input id="account-query" type="search" placeholder="e.g. quality, Hexcel, Miami" value="${html(state.query)}">
+      </label>
+      <label class="field">Segment <select id="segment">${options([["", "All segments"], ...segments.map((segment) => [segment, segment])], state.segment)}</select></label>
+      <label class="field">Sort by <select id="sort">${options([["score", "Fit score"], ["signal", "Newest signal"], ["name", "Account name"]], state.order)}</select></label>
+      <button class="btn" type="button" data-action="csv">Export filtered CSV</button>
+    </div>
+    <div class="layout">
+      <aside class="panel account-panel" aria-labelledby="account-list-title">
+        <div class="panel-head"><h2 id="account-list-title">Qualified accounts</h2><span id="match-count" class="small" aria-live="polite"></span></div>
+        <div class="account-list" id="account-list"></div>
+      </aside>
+      <div id="brief"></div>
+    </div>`;
+  updateAccounts();
+}
+
+function updateAccounts() {
+  const matches = visibleAccounts();
+  const account = matches.find((match) => match.id === state.account) ?? matches[0];
+  if (account) state.account = account.id;
+  document.querySelector("#match-count").textContent = matches.length + " of " + accounts.length;
+  document.querySelector("#account-list").innerHTML = matches.map((match) => `
+    <button class="account" type="button" data-account="${html(match.id)}" aria-pressed="${match.id === state.account}">
+      <span><strong>${html(match.name)}</strong><small>${html(match.segment)} · ${html(match.priority)}</small></span>
+      <span class="score-tag" aria-label="${match.score} out of 100">${match.score}</span>
+    </button>`).join("");
+  document.querySelector("#brief").innerHTML = account ? brief(account) :
+    '<div class="panel empty"><h2>No matching accounts</h2><p>Try a different query or clear the segment filter.</p></div>';
+}
+
+function renderEvidence() {
+  const included = state.evidenceAccount ? accounts.filter((account) => account.id === state.evidenceAccount) : accounts;
+  view.innerHTML = `
+    <section class="panel evidence-view">
+      <h2>Evidence library</h2>
+      <p class="small">Award records, dated commercial signals, and public role evidence.</p>
+      <div class="tools" style="margin-top: 13px">
+        <label class="field">Account <select id="evidence-account">${options([["", "All accounts"], ...accounts.map((account) => [account.id, account.name])], state.evidenceAccount)}</select></label>
+      </div>
+      <div class="evidence-list">${included.flatMap((account) => evidence(account).map((item) => evidenceTile(item, account.name))).join("")}</div>
+    </section>`;
+}
+
+function renderMethod() {
+  view.innerHTML = `
+    <section class="panel method">
+      <h2>Qualification methodology</h2>
+      <p>Every selected account has a verified U.S. DoD award record tied to a named recipient and a separate public commercial manufacturing or MRO signal. The operational fit is based on the public MASS Group TME® product scope.</p>
+      <h3>How fit is scored</h3>
+      <ul>${rubric.map((dimension) => "<li><strong>" + html(dimension.label) + " · " + dimension.max +
+        " points.</strong> " + html(dimension.explanation) + "</li>").join("")}</ul>
+      <p><strong>88–100</strong> Prioritize · <strong>79–87</strong> Explore · <strong>Below 79</strong> Monitor.</p>
+      <p>The score is an exploratory ranking. Discovery should validate site ownership, current systems, the change window, and the budget path.</p>
+      <h3>Federal award data</h3>
+      <p>USAspending Advanced Award Search, DoD awarding agency and prime contract types A–D, recipient-name query and a ${date(meta.startDate)}–${date(meta.asOf)} search window. Awards can appear in this window because of transactions on an earlier award. The dataset retains one reviewed record per account. Displayed amounts are the API's award-level reported amounts. They describe the federal award and are separate from software spending.</p>
+      <p class="small">${source(meta.apiDocs, "USAspending API documentation")} · <code>POST ${html(new URL(meta.api).pathname)}</code></p>
+      <h3>Commercial signals and stakeholder evidence</h3>
+      <p>Company announcements, annual reports, and SEC filings supply the dated operating signals. Deepline Native People Search ran in free-only mode for ${meta.deeplineSearches} company domains. Company pages and public professional profiles corroborate names and roles. Role-only slots identify the approval path to verify.</p>
+      <p class="small">${source(meta.mass, "MASS Group aerospace and defense product scope")} · ${source(meta.deepline, "Deepline GTM skill")}</p>
+      <h3>Research boundaries</h3>
+      <p>This snapshot uses public sources and recorded ${meta.credits} Deepline credits. It contains public names and job titles, source URLs, and unsent draft copy. Existing tools, active MES buying intent, incumbent status, and account ownership require validation.</p>
+    </section>`;
+}
+
+function readRoute() {
+  const [section, accountId] = location.hash.slice(1).split("/");
+  state.view = ["accounts", "evidence", "method"].includes(section) ? section : "accounts";
+  if (accounts.some((account) => account.id === accountId)) state.account = accountId;
+}
+
+function renderRoute() {
+  document.querySelectorAll("[data-view]").forEach((button) => {
+    if (button.dataset.view === state.view) button.setAttribute("aria-current", "page");
+    else button.removeAttribute("aria-current");
+  });
+  ({ accounts: renderAccounts, evidence: renderEvidence, method: renderMethod })[state.view]();
+}
+
+function download(name, content, type) {
+  const url = URL.createObjectURL(new Blob([content], { type }));
+  const anchor = document.createElement("a");
+  anchor.href = url;
+  anchor.download = name;
+  anchor.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+}
+
+function csvCell(value) {
+  const text = String(value ?? "");
+  const safeText = /^[=+\-@\t\r]/.test(text) ? "'" + text : text;
+  return '"' + safeText.replaceAll('"', '""') + '"';
+}
+
+function exportCsv() {
+  const matches = visibleAccounts();
+  if (!matches.length) {
+    showToast("There are no filtered accounts to export.");
+    return;
+  }
+  const rows = [
+    ["Account", "Domain", "Segment", "Fit score", "Priority", "Workflow", "Signal date", "Public signal", "Commercial source", "Award ID", "Award date", "Award source", "Lead stakeholder", "Lead role", "Lead source", "Next action"],
+    ...matches.map((account) => [
+      account.name, account.domain, account.segment, account.score, account.priority, account.workflow,
+      account.signal.date, account.signal.fact, account.signal.url, account.award.id, account.award.date, account.award.url,
+      account.stakeholders[0].name, account.stakeholders[0].title, account.stakeholders[0].url, account.next
+    ])
+  ];
+  download("mass-group-account-shortlist.csv", "\ufeff" + rows.map((row) => row.map(csvCell).join(",")).join("\r\n"), "text/csv;charset=utf-8");
+  showToast("Shortlist exported.");
+}
+
+function exportBrief(account) {
+  const sections = [
+    "# Account Action Brief · " + account.name,
+    ["Snapshot " + meta.asOf, account.segment, "Fit " + account.score + "/100 · " + account.priority].join("\n"),
+    "## Fit\n" + account.workflow + "\n" + account.fit,
+    "## Evidence\n" + evidence(account).slice(0, 2).map((item) => "- " + item.date + " · " + item.title + ". " + item.detail + " [" + item.publisher + "](" + item.url + ")").join("\n"),
+    "## Buying hypothesis\n" + account.hypothesis + "\n\nValidate: " + account.validation,
+    "## Stakeholders\n" + account.stakeholders.map((role) => "- " + role.role + " · " + (role.name ?? "Holder to identify") + " · " + role.title + " · " + role.status + (role.url ? " [Role evidence](" + role.url + ")" : "")).join("\n"),
+    "## Next action\n" + account.next,
+    "## Draft for review\nSubject: " + account.outreach.subject + "\n\n" + account.outreach.body
+  ];
+  download("mass-group-" + account.id + "-brief.md", sections.join("\n\n") + "\n", "text/markdown;charset=utf-8");
+  showToast("Account brief downloaded.");
+}
+
+async function copyDraft(account) {
+  const text = "Subject: " + account.outreach.subject + "\n\n" + account.outreach.body;
+  try {
+    await navigator.clipboard.writeText(text);
+    showToast("Draft copied.");
+  } catch {
+    const selection = window.getSelection();
+    const range = document.createRange();
+    range.selectNodeContents(document.querySelector(".outreach-body"));
+    selection.removeAllRanges();
+    selection.addRange(range);
+    showToast("Draft selected. Press Ctrl+C or Command+C to copy.");
+  }
+}
+
+document.querySelector("#snapshot-date").textContent = "PUBLIC SNAPSHOT · " + date(meta.asOf);
+const metrics = [
+  [accounts.length, "Qualified accounts"],
+  [accounts.length, "DoD award records"],
+  [accounts.reduce((sum, account) => sum + account.stakeholders.filter((role) => role.name).length, 0), "Named stakeholders"],
+  ["$0", "External data spend"]
+];
+document.querySelector("#metrics").innerHTML = metrics.map(([value, label]) =>
+  '<div class="metric"><strong>' + html(value) + "</strong><span>" + html(label) + "</span></div>"
+).join("");
+
+document.querySelector(".nav").addEventListener("click", (event) => {
+  const button = event.target.closest("[data-view]");
+  if (!button) return;
+  const target = button.dataset.view;
+  location.hash = target === "accounts" ? "accounts/" + state.account : target;
+});
+
+view.addEventListener("input", (event) => {
+  if (event.target.id !== "account-query") return;
+  state.query = event.target.value;
+  updateAccounts();
+});
+
+view.addEventListener("change", (event) => {
+  const fields = { segment: "segment", sort: "order", "evidence-account": "evidenceAccount" };
+  const field = fields[event.target.id];
+  if (!field) return;
+  state[field] = event.target.value;
+  if (field === "evidenceAccount") {
+    renderEvidence();
+    document.querySelector("#evidence-account").focus();
+  } else {
+    updateAccounts();
+  }
+});
+
+view.addEventListener("click", (event) => {
+  const accountButton = event.target.closest("[data-account]");
+  if (accountButton) {
+    state.account = accountButton.dataset.account;
+    history.replaceState(null, "", "#accounts/" + state.account);
+    updateAccounts();
+    if (matchMedia("(max-width: 720px)").matches) {
+      document.querySelector("#brief-title").focus();
+    } else {
+      document.querySelector("[data-account][aria-pressed='true']").focus({ preventScroll: true });
+    }
+    return;
+  }
+  const button = event.target.closest("[data-action]");
+  if (!button) return;
+  const account = accounts.find((entry) => entry.id === button.dataset.id);
+  if (button.dataset.action === "csv") exportCsv();
+  if (button.dataset.action === "brief" && account) exportBrief(account);
+  if (button.dataset.action === "copy" && account) void copyDraft(account);
+});
+
+window.addEventListener("hashchange", () => {
+  if (location.hash === "#main") return;
+  readRoute();
+  renderRoute();
+});
+
+readRoute();
+renderRoute();
+
+  </script>
+</body>
+</html>
